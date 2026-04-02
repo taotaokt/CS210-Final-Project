@@ -1,93 +1,95 @@
-# **SQL-Driven Analysis of E-Commerce User Behavior for Purchase Prediction**
+# SQL-Driven Analysis of E-Commerce User Behavior for Purchase Prediction
 
-This project builds a **scalable, SQL-based data warehouse** and an **end-to-end machine learning pipeline** to analyze user behavior logs from a multi-category e-commerce platform and predict purchase probability.
-Using a star-schema MySQL warehouse, engineered features, gradient-boosting models, and SHAP interpretability, the system demonstrates an enterprise-style workflow for data management and predictive analytics.
+## Team Project
+This project was developed collaboratively as part of a data science course.
 
----
+## My Contributions
+- Built and optimized SQL queries for large-scale user behavior analysis  
+- Implemented data preprocessing and ETL pipeline using Python and Pandas  
+- Contributed to feature engineering and machine learning model development  
 
-## **Project Overview**
 
-* **Dataset:** Kaggle Multi-Category Store E-commerce Behavior Data (5M+ event logs)
-* **Goal:** Predict user purchase probability based on behavioral patterns
-* **Technologies:**
+## Project Description
 
-  * **MySQL** (star schema, SQL aggregation, index optimization)
-  * **Python + Pandas** (ETL, chunked streaming)
-  * **Scikit-learn, XGBoost, LightGBM** (ML models & evaluation)
-  * **SHAP** (model interpretability)
-* **Pipeline:** Data ingestion → Cleaning → SQL warehouse → Feature engineering → Modeling → Evaluation → Visualization
+This project builds a **scalable SQL-based data warehouse** and an **end-to-end machine learning pipeline** to analyze user behavior logs from a multi-category e-commerce platform and predict purchase probability.
 
----
+The system demonstrates a complete data science workflow, including data ingestion, storage, feature engineering, modeling, and evaluation.
 
-## **Data Warehouse Design**
+
+## Tech Stack
+
+- **SQL (MySQL)** – data warehousing, aggregation, indexing  
+- **Python (Pandas)** – ETL pipeline and data processing  
+- **Machine Learning** – Scikit-learn, XGBoost, LightGBM  
+- **Visualization & Analysis** – Matplotlib  
+- **Model Interpretability** – SHAP  
+
+
+## Project Overview
+
+- **Dataset:** Kaggle Multi-Category Store E-commerce Behavior Data (5M+ event logs)  
+- **Goal:** Predict user purchase probability based on behavioral patterns  
+
+- **Pipeline:**  
+  Data ingestion → Cleaning → SQL warehouse → Feature engineering → Modeling → Evaluation → Visualization  
+
+
+## Data Warehouse Design
 
 We use a **star schema** to efficiently store millions of events and support analytical SQL queries.
 
-**Fact Table:** user_behavior
-**Dimension Tables:** users, products
+- **Fact Table:** user_behavior  
+- **Dimension Tables:** users, products  
 
-Advantages:
+**Advantages:**
+- Efficient aggregation compared to raw logs  
+- Scalable for large datasets  
+- Supports behavioral and conversion analysis  
 
-* Better aggregation performance vs. flat logs
-* Scalable to tens of millions of rows
-* Enables conversion analysis, product interest tracking, session statistics
 
-*(Insert your diagram here)*
+## ETL Pipeline
 
-```
-figures/project_process.png
-```
+Key features of the ETL system:
 
----
+- Stream-based chunk loading (`chunksize=500,000`)  
+- Data cleaning (timestamp correction, handling missing values)  
+- Bulk ingestion using SQL (`LOAD DATA LOCAL INFILE`)  
+- Optimized indexing strategy  
+- Memory-efficient processing of large datasets  
 
-## **ETL Pipeline**
 
-Key features of our ETL system:
+## Machine Learning Models
 
-* Stream-based chunk loading (`chunksize=500,000`)
-* Real-time cleaning (timestamp fix, missing categories/brands → "unknown")
-* Efficient bulk ingestion (`LOAD DATA LOCAL INFILE`)
-* Deferred indexing for faster import
-* Memory-efficient: handles multi-million row files on commodity hardware
+Models evaluated:
 
----
-
-## **Machine Learning Models**
-
-We evaluate multiple models:
-
-* Logistic Regression (baseline)
-* Random Forest
-* XGBoost
-* LightGBM
-* Soft-Voting Ensemble
+- Logistic Regression (baseline)  
+- Random Forest  
+- XGBoost  
+- LightGBM  
+- Soft Voting Ensemble  
 
 **Feature categories:**
-
-* Session features
-* Action frequency
-* Category diversity
-* Price/interaction features
+- Session-based features  
+- Action frequency  
+- Category diversity  
+- Price-related interactions  
 
 **Evaluation metrics:**
+- ROC / AUC  
+- Precision-Recall Curve  
+- Calibration Curve  
+- Lift Analysis  
 
-* ROC / AUC
-* PR Curve / Average Precision
-* Calibration curves
-* Lift charts
 
----
+## Key Insights
 
-## **Key Insights**
+- Behavioral features are more predictive than price-related features  
+- Top-ranked users show significantly higher conversion rates  
+- User activity peaks suggest optimal marketing timing  
+- Category-level trends reveal business opportunities  
 
-* Behavioral intensity (sessions, actions per session) is far more predictive than price signals.
-* Top 10% model-ranked users show **6× higher** conversion rates.
-* Activity peaks around **17:00**, suggesting optimal marketing windows.
-* Smartphone category dominates platform revenue.
 
----
-
-## **How to Run**
+## How to Run
 
 ### **1. Set up MySQL**
 
